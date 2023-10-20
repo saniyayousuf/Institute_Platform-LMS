@@ -4,7 +4,8 @@ import { Button, TextField, Select, MenuItem, FormControl, InputLabel, Grid } fr
 
 
 
-export default function InstituteForm() {
+export default function InstituteForm() 
+{
     const [instituteData, setInstituteData] = useState({
         name: '',
         shortName: '',
@@ -18,6 +19,7 @@ export default function InstituteForm() {
         ownerEmail: '',
         userType: 'Institute',
         instituteType: 'School',
+        status:'',
     });
 
     const fillModel = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -25,18 +27,21 @@ export default function InstituteForm() {
         setInstituteData({ ...instituteData, [name]: value });
     };
 
-    const handleAddInstitute = async () => {
+    const AddInstitute = async () => {
         try {
             await FbAdd('institutes', instituteData); 
             setInstituteData({ ...instituteData, name: '',
              shortName: '',
              logo:"",
-             numOfCampus:"",
+             numOfCampus: 0 ,
              location : '',
              address: "",
              contact: "",
              ownerEmail: '',
-             
+             ownerContact:'',
+             userType: "",
+             instituteType: " ",
+             status: ''
 
 
               });
@@ -220,9 +225,7 @@ export default function InstituteForm() {
                   onChange={(e:any) => fillModel(e)}
                 >
                   <MenuItem value="Institute">Institute</MenuItem>
-                  <MenuItem value="School">School</MenuItem>
-                  <MenuItem value="College">College</MenuItem>
-                  <MenuItem value="University">University</MenuItem>
+                 
                 </Select>
               </FormControl>
             </Grid>
@@ -241,11 +244,25 @@ export default function InstituteForm() {
                 </Select>
               </FormControl>
             </Grid>
+            <Grid item xs={4}>
+              <FormControl fullWidth>
+                <InputLabel>Status</InputLabel>
+                <Select
+                  name="status"
+                  value={instituteData.status}
+                  onChange={(e:any) => fillModel(e)}
+                >
+                  <MenuItem value="Active">Active</MenuItem>
+                  <MenuItem value="NotActive">NotActive</MenuItem>
+                  
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
           <div className="p-2">
             <Button
               type="button"
-              onClick={handleAddInstitute}
+              onClick={AddInstitute}
               variant="outlined"
             >
               Add Institute

@@ -3,7 +3,6 @@ type tableProps = {
     datasourse: any[];
     cols: any[];
   };
-  
   export default function BATable(props: tableProps) {
     const { label, datasourse, cols } = props;
     return (

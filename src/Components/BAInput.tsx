@@ -7,17 +7,19 @@ type inputtype = {
   label: string,
   variant?: string,
   onChange?: any,
-  required: boolean,
+  required?: boolean,
+  disabled?: boolean,
   type?: string,
   value?: any,
-  className?: string
+  className?: string,
+  name:string
 
 
 
 
 }
 export default function Input(props: inputtype) {
-  const { label, onChange, type, required, variant, value, className } = props;
+  const { label, onChange, type, required, variant, value, className,name ,disabled} = props;
   return (
     <Box
       component="form"
@@ -28,13 +30,15 @@ export default function Input(props: inputtype) {
       autoComplete="off"
     >
       <TextField
+      disabled={disabled}
         className={className}
         placeholder={label}
         required={required}
-        variant="filled"
+        variant='outlined'
         onChange={onChange}
         type={type ?? "text"}
         value={value}
+        name={name}
       />
 
     </Box>

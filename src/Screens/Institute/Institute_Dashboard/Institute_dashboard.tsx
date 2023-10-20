@@ -24,6 +24,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 // Screens
 import CourseList from '../Institute_screens/CourseList';
 import CourseForm from '../Institute_screens/CourseForm';
+import AddQuiz from '../Institute_screens/AddQuiz';
+import StudentForm from '../Institute_screens/StudentForm';
+import StudentList from '../Institute_screens/StudentList';
+import CourseDetail from '../Institute_screens/StudentDetail';
+import Formcontrol from '../Institute_screens/formControl';
 
 
 const drawerWidth = 240;
@@ -42,16 +47,43 @@ export default function InstitueDashboard(props: Props) {
       route: "Course_list",
       icon: <DynamicFormIcon />,
     },
+
     {
-        name: "CourseForm",
-        route: "Course_Form",
-        icon: <ListIcon />,
-      },
-    {
-      name: "User Registration",
-      route: "user_reg",
-      icon: <AppRegistrationIcon />,
+      name: " Quiz Panel",
+      route: "Add_quiz",
+      icon: <DynamicFormIcon />,
     },
+    {
+      name: "formcontrol",
+      route: "Course_list",
+      icon: <DynamicFormIcon />,
+    },
+    {
+      name: "payrol",
+      route: "Course_list",
+      icon: <DynamicFormIcon />,
+    },
+    {
+      name: "result",
+      route: "Course_list",
+      icon: <DynamicFormIcon />,
+    },
+    {
+      name: " Student List ",
+      route: "student_list",
+      icon: <DynamicFormIcon />,
+    },
+    {
+      name: "teacher",
+      route: "Course_list",
+      icon: <DynamicFormIcon />,
+    },
+    // {
+    //   name: " Student Form ",
+    //   route: "student_form",
+    //   icon: <DynamicFormIcon />,
+    // },
+   
   
   ]);
 
@@ -159,9 +191,14 @@ export default function InstitueDashboard(props: Props) {
       >
         <Toolbar />
         <Routes>
+          <Route path="Course_detail/:id" element={<CourseDetail />} />
           <Route path="Course_Form" element={<CourseForm />} />
+          <Route path="Course_Form/:id" element={<CourseForm />} />
           <Route path="Course_list" element={<CourseList />} />
-          {/* <Route path="user_reg" element={<UserRegister />} /> */}
+          <Route path="formcontrol" element={<Formcontrol />} />
+          <Route path="student_form" element={<StudentForm />} />
+          <Route path="student_list" element={<StudentList/>} />
+          <Route path="Add_quiz" element={<AddQuiz />} />
          
         </Routes>
       </Box>

@@ -14,16 +14,23 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import BAButton from '../../Components/BAButton';
+// import BAButton from '../../../Components/BAButton';
+
 // ICONS
 import ListIcon from '@mui/icons-material/List';
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LogoutIcon from '@mui/icons-material/Logout';
 // Screens
-import UserRegister from './admin_screens/UserRegister';
-import InstituteList from './admin_screens/InstituteList';
-import InstituteForm from './admin_screens/InstituteForm';
+// import CourseList from '../Institute_screens/CourseList';
+// import CourseForm from '../Institute_screens/CourseForm';
+// import AddQuiz from '../Institute_screens/AddQuiz';
+// import StudentForm from '../Institute_screens/StudentForm';
+// import StudentList from '../Institute_screens/StudentList';
+// import CourseDetail from '../Institute_screens/StudentDetail';
+import Quiz from './student_pages/quiz';
+import Result from './student_pages/result';
+import BAButton from '../../Components/BAButton';
 
 
 const drawerWidth = 240;
@@ -31,32 +38,36 @@ interface Props {
   window?: () => Window;
 }
 
-export default function AdminDashboard(props: Props) {
+export default function InstitueDashboard(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [pagesArr, setPagesArr] = React.useState([
+   
     {
-      name: "Institute List",
-      route: "Institute_list",
-      icon: <ListIcon />,
+      name: "CourseList",
+      route: "Course_list",
+      icon: <DynamicFormIcon />,
     },
-
-    // {
-    //   name: "User Registration",
-    //   route: "user_reg",
-    //   icon: <AppRegistrationIcon />,
-    // },
-    // {
-    //   // name: "Institute Form",
-    //   route: "Institute_form",
-    //   // icon: <DynamicFormIcon />,
-    // }
-
+    {
+      name: " Quiz Panel",
+      route: "Add_quiz",
+      icon: <DynamicFormIcon />,
+    },
+    {
+      name: " Student List ",
+      route: "student_list",
+      icon: <DynamicFormIcon />,
+    },
+    {
+      name: " Student Form ",
+      route: "student_form",
+      icon: <DynamicFormIcon />,
+    },
+   
+  
   ]);
-// const routescreen = (route:string)=>{
-//   navigate(`/admin/${route}`)
-// }
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -64,7 +75,7 @@ export default function AdminDashboard(props: Props) {
   const navigate = useNavigate();
 
   const openPage = (route: any) => {
-    navigate(`/admin-dashboard/${route}`);
+    navigate(`/institute-dashboard/${route}`);
   };
 
   const drawer = (
@@ -81,12 +92,12 @@ export default function AdminDashboard(props: Props) {
           </ListItem>
         ))}
       </List>
-      <div className='ps-3  ms-5' >
+      <div  className='ps-3  ms-5' >
 
-        <BAButton label={'LOG OUT'} variant={'outlined'} onClick={() => navigate('/login')}
-
-        />
-      </div>
+      <BAButton label={'LOG OUT'} variant={'outlined'} onClick={()=> navigate('/login')}
+           
+           />
+           </div>
     </div>
   );
 
@@ -95,9 +106,9 @@ export default function AdminDashboard(props: Props) {
   return (
 
     <Box sx={{ display: 'flex' }}>
-
+      
       <CssBaseline />
-
+      
       <AppBar
         position="fixed"
         sx={{
@@ -106,7 +117,7 @@ export default function AdminDashboard(props: Props) {
         }}
       >
         <Toolbar>
-
+          
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -116,11 +127,11 @@ export default function AdminDashboard(props: Props) {
           >
             {/* <MenuIcon /> */}
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Institute Learning Management System
+          <Typography variant="h6" noWrap  component="div">
+     Institute Learning Management System
           </Typography>
           <Typography variant="h3" noWrap className='ms-5' component="div">
-
+           
           </Typography>
         </Toolbar>
       </AppBar>
@@ -161,11 +172,10 @@ export default function AdminDashboard(props: Props) {
       >
         <Toolbar />
         <Routes>
-          <Route path="Institute_form" element={<InstituteForm />} />
-          <Route path="Institute_form/:id" element={<InstituteForm />} />
-          <Route path="Institute_list/*" element={<InstituteList />} />
-          <Route path="user_reg" element={<UserRegister />} />
-
+          <Route path="quiz" element={<Quiz />} />
+          <Route path="result" element={<Result />} />
+        
+         
         </Routes>
       </Box>
     </Box>
